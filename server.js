@@ -69,6 +69,29 @@ function asyncHandler(fn) {
     };
 }
 
+// ─── Root Route ──────────────────────────────────────────────────────────────
+app.get("/", (req, res) => {
+    res.json({
+        service: "Content Authenticity Verifier API",
+        version: "1.0.0",
+        status: "running",
+        docs: {
+            health: "/api/health",
+            supportedTypes: "/api/supported-types",
+            endpoints: [
+                "POST /api/detect/text",
+                "POST /api/detect/image",
+                "POST /api/detect/video",
+                "POST /api/detect/profile",
+                "POST /api/detect/social-post",
+                "POST /api/detect/instagram",
+                "POST /api/detect/facebook",
+                "POST /api/detect/whatsapp",
+            ],
+        },
+    });
+});
+
 // ─── Health Check ────────────────────────────────────────────────────────────
 app.get("/api/health", (req, res) => {
     res.json({
